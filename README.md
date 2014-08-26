@@ -22,9 +22,10 @@ Getting started with the Strap Metrics SDK is pretty straightforward. These step
 
 3. ```import com.straphq.wear_sdk_wear``` in files using Strap.
 
-4. Make sure your application can access the Internet.
+4. Make sure your application can access the Internet and use Google Play Services. 
            
         <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
 5. Instantiate StrapMetrics
      * _Mobile_ - You'll need a WearableListenerService on the mobile side, which you probably already have if you've built a Wear app. If you don't, here's one you can borrow:
