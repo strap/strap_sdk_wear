@@ -84,7 +84,7 @@ Getting started with the Strap Metrics SDK is pretty straightforward. These step
         
 
 
-    * _Wear_ - To instantiate Strap you'll need to create a GoogleApiClient, have access to the Context, and have a valid appID to pass. Once you've created the Strap metrics, you can use the ```logEvent('/event-name/foo')``` function to log events. We'll be rolling out more functions in the coming weeks.
+    * _Wear_ - To instantiate Strap you'll need to create a GoogleApiClient, have access to the Context, and have a valid appID to pass. Once you've created the Strap metrics, you can use the ```logEvent('/event-name/foo')``` function to log events. 
 
 
             public class MyActivity extends Activity {
