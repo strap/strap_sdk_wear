@@ -15,10 +15,12 @@ import android.util.Log;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.straphq.wear_sdk.Strap;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class MyActivity extends Activity {
 
-    // TODO: Dynamically pull this from strings.xml. I couldn't get that to work. -@scald
 //  String strapAppID = this.getString(R.string.strap_app_id);
     String strapAppID = "";
     private static Strap strap = null;
@@ -42,6 +44,16 @@ public class MyActivity extends Activity {
                             public void onConnected(Bundle connectionHint) {
                                 Log.d("TAG", "onConnected: " + connectionHint);
                                 strap.logEvent("/app/started");
+
+                                //Adding custom event data as JSON
+                                JSONObject userData = new JSONObject();
+                                try {
+                                    userData.put("username", "sampleusername");
+                                } catch (JSONException e) {
+                                    Log.d("JSON", e.getMessage());
+                                }
+
+                                strap.logEvent("/app/foundUser", userData);
 
                             }
                             @Override

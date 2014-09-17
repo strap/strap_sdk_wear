@@ -6,7 +6,7 @@ Strap Metrics is a wearable analytics platform for developers. This repository c
 ##Strap Metrics for Android Wear SDK Quick Start Guide
 
 
-We use a ```WearableListenerService``` to communicate data from the watch to the phone. As a developer, you simply import the Strap objects, instantiate, and send some events (optional). If you just instantiate and don't send events, we'll send app diagnostics and sensor data automatically. 
+We use a ```WearableListenerService``` to communicate data from the watch to the phone. As a developer, you simply import the Strap objects, instantiate, and send some events (optional). If you just instantiate and don't send events, we'll send app diagnostics and sensor data automatically.
 
 Getting started with the Strap Metrics SDK is pretty straightforward. These steps shouldn't take more than 15-20 minutes. We're assuming you use <a href="https://developer.android.com/sdk/installing/studio.html">Android Studio</a>. You should probably also setup <a href="https://developer.android.com/training/wearables/apps/bt-debugging.html">Bluetooth Debugging</a> if you haven't already.
 
@@ -22,8 +22,8 @@ Getting started with the Strap Metrics SDK is pretty straightforward. These step
 
 3. ```import com.straphq.wear_sdk_wear``` in files using Strap.
 
-4. Make sure your application can access the Internet and use Google Play Services. 
-           
+4. Make sure your application can access the Internet and use Google Play Services.
+
         <uses-permission android:name="android.permission.INTERNET"></uses-permission>
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
@@ -81,10 +81,10 @@ Getting started with the Strap Metrics SDK is pretty straightforward. These step
                 }
             }
 
-        
 
 
-    * _Wear_ - To instantiate Strap you'll need to create a GoogleApiClient, have access to the Context, and have a valid appID to pass. Once you've created the Strap metrics, you can use the ```logEvent('/event-name/foo')``` function to log events. 
+
+    * _Wear_ - To instantiate Strap you'll need to create a GoogleApiClient, have access to the Context, and have a valid appID to pass. Once you've created the Strap metrics, you can use the ```logEvent('/event-name/foo')``` function to log events. You can also pass a JSONObject along with the event name using the  ```logEvent('/event-name/foo', JSONObject)``` function to log custom data. We'll be rolling out more functions in the coming weeks.
 
 
             public class MyActivity extends Activity {
@@ -116,6 +116,16 @@ Getting started with the Strap Metrics SDK is pretty straightforward. These step
                                             // Now you can use the logEvent function (not until watch is connected)
                                             // log an event
                                             strap.logEvent("/app-load");
+
+                                            //Adding custom event data as JSON
+                                            JSONObject userData = new JSONObject();
+                                            try {
+                                                userData.put("username", "sampleusername");
+                                            } catch (JSONException e) {
+                                                Log.d("JSON", e.getMessage());
+                                            }
+
+                                            strap.logEvent("/app/foundUser", userData);
                                         }
                                         @Override
                                         public void onConnectionSuspended(int cause) {
@@ -152,5 +162,4 @@ Getting started with the Strap Metrics SDK is pretty straightforward. These step
 
 ![alt text](http://images.memegenerator.net/images/200x/1031.jpg "Success Kid")
 
-That wasn't bad, right? You've successfully integrated Strap into your Android Wear application. We'll start crunching the numbers as data starts to flow into Strap, and you'll be seeing <a href="https://www.straphq.com/login">reports on the dashboard</a> in a few minutes. We have tested Strap in a variety of app configurations, but your feedback is extremely important to us in this beta period! If you have any questions, concerns, or problems with Strap Metrics, please let us know. You can open an issue on GitHub, visit our community support portal at http://strap.uservoice.com, email us at support@straphq.com, or tweet us @getstrap. 
-
+That wasn't bad, right? You've successfully integrated Strap into your Android Wear application. We'll start crunching the numbers as data starts to flow into Strap, and you'll be seeing <a href="https://www.straphq.com/login">reports on the dashboard</a> in a few minutes. We have tested Strap in a variety of app configurations, but your feedback is extremely important to us in this beta period! If you have any questions, concerns, or problems with Strap Metrics, please let us know. You can open an issue on GitHub, visit our community support portal at http://strap.uservoice.com, email us at support@straphq.com, or tweet us @getstrap.
